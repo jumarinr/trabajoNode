@@ -1,0 +1,13 @@
+[{
+  "nombre" : "Nodejs",
+  "id" : 123,
+  "descripcion" : "esto es un curso de node",
+  "valor": 123,
+  "estado" : "no disponible"
+  }, {
+    "nombre" : "Curso de matematicas",
+    "id" : 124,
+    "descripcion" : "esto es un curso de matematicas",
+    "valor": 0,
+    "estado" : "disponible"
+    }]

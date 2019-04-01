@@ -1,0 +1,25 @@
+{
+  "name": "trabajonode",
+  "version": "1.0.1",
+  "description": "Esta es la entrega uno grupal del curos de nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jumarinr/trabajoNode.git"
+  },
+  "author": "Juan Diego Marin jumarinr@unal.edu.co, Sergio Esteban Cabrera Eraso scabrera@unal.edu.co, Eduardo Santos esantosr@unal.edu.co ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jumarinr/trabajoNode/issues"
+  },
+  "homepage": "https://github.com/jumarinr/trabajoNode#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "hbs": "^4.0.3",
+    "nodemon": "^1.18.10"
+  }
+}
