@@ -1,20 +1,17 @@
 {{>header}}
-<h1> hola bb {{estudiante}}
   <p> Registro de cursos</p>
-<form action="/subirCursos" method="post">
+<form action="/inscribirCursos" method="post">
   <input required type="text" name="nombre" placeholder="Ingrese nombre del curso">
   <input required type="number" name="id" placeholder="ingrese id del curso">
   <input required type="text" name="descripcion" placeholder="Ingrese breve descripcion del curso">
   <input required type="number" name="precio" placeholder="ingrese el precio">
-  <select >
+  <select name="modalidad" >
   <option disabled selected >seleccione modalidad (opcional)</option>
    <option value="virtual">virtual</option>
    <option value="presencial">presencial</option>
  </select>
- <input type="text" placeholder="Ingrese intensidad horaria">
-
+ <input type="text" name="intensidad" placeholder="Ingrese intensidad horaria">
   <button>subir</button>
 </form>
-</h1>
 {{>footer}}
 </html>

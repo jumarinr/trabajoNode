@@ -1,13 +1,1 @@
-[{
-  "nombre" : "Nodejs",
-  "id" : 123,
-  "descripcion" : "esto es un curso de node",
-  "valor": 123,
-  "estado" : "no disponible"
-  }, {
-    "nombre" : "Curso de matematicas",
-    "id" : 124,
-    "descripcion" : "esto es un curso de matematicas",
-    "valor": 0,
-    "estado" : "disponible"
-    }]
+[{"nombre":"Programacion orientada a objetos","id":"25","descripcion":"cruso de programacion","valor":"0","estado":"disponible","modalidad":"virtual","intensidad":"50"}]
