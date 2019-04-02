@@ -16,11 +16,11 @@ app.set( 'view engine' , 'hbs');
 
 const  roles = ['aspirante', 'coordinador', 'visitante'];
 function crearCurso(nombre, id, descripcion, precio, modalidad, intensidad) {
- console.log(listadoCursos);
- let cursos = listadoCursos
+ let cursos = listadoCursos;
+ let texto;
  const resultado = cursos.find( curso => curso.id === id)
  if (resultado) {
-   return "no se creo el curso porque este id ya existe, por favor ingrese otra"
+   texto = "no se creo el curso porque este id ya existe, por favor ingrese otra"
  }else{
    let materia =   { "nombre" : nombre,
      "id" : id ,
@@ -30,24 +30,25 @@ function crearCurso(nombre, id, descripcion, precio, modalidad, intensidad) {
      "modalidad": modalidad ? modalidad : null,
      "intensidad": intensidad }
      cursos.push(materia)
-     fs.writeFile(direccion , JSON.stringify(cursos),'utf8', (err)=>{
+     texto = "curso creado";
+     fs.writeFile(direccionCursos , JSON.stringify(cursos),'utf8', (err)=>{
        if(err){
          console.log(err)
-         return "no se creo el curso"
+         texto = "no se creo el curso"
        }
        else{
-           console.log('se ha creado el archivo editado el archivo');
-           return "curso creado"
+           texto =  "curso creado"
          }
      })
  }
+ return texto;
 }
 
 function inscribirACurso(id, idMateria) {
  let matriculas = listadoMatriculas;
  let busca;
  const resultado = matriculas.find( matricula => {
-   if (matricula.id === id && matricula.cursos){
+   if (matricula.id == id && matricula.cursos){
      for (var i = 0; i < matricula.cursos.length; i++) {
        if (matricula.cursos[i]==idMateria){
         busca = true;
@@ -59,19 +60,22 @@ function inscribirACurso(id, idMateria) {
    return "el estudiante ya esta registrado en esta";
  }else{
    let estudiante = listadoEstudiantes.find( matricula => matricula.documento == id)
+   console.log(id, idMateria)
    let dataEstudiante = matriculas.find( matricula => matricula.id == id)
+   console.log(dataEstudiante);
    if (!estudiante){
      return "el estudiante no se encuentra registrado"
    }else{
-     if (matriculas.indexOf(dataEstudiante) ){
+     if (matriculas.indexOf(dataEstudiante)!=-1 ){
+       console.log(matriculas.indexOf(dataEstudiante) )
       matriculas.splice(matriculas.indexOf(dataEstudiante) , 1);
-       dataEstudiante.cursos.push(idMateria);
     }else{
       dataEstudiante = {
         id: id,
-        materias: [idMateria]
+        cursos: [idMateria]
       }
     }
+    dataEstudiante.cursos.push(idMateria);
      matriculas.push(dataEstudiante)
      fs.writeFile(direccionMatriculas , JSON.stringify(matriculas),'utf8', (err)=>{
        if(err){
@@ -89,6 +93,7 @@ function inscribirACurso(id, idMateria) {
 
 function inscribirUsuario(nombre, id, correo, numero) {
  let usuarios = listadoEstudiantes;
+ let texto;
  const resultado = usuarios.find( usuario => usuario.documento == id)
  if (resultado) {
    return "no se creo el usuario porque con este id ya existe, por favor ingrese otra"
@@ -99,17 +104,19 @@ function inscribirUsuario(nombre, id, correo, numero) {
      "numero": numero,
      "rol" : "aspirante"}
      usuarios.push(usuario)
+     texto =  "usuario creado"
      fs.writeFile(direccionEstudiantes , JSON.stringify(usuarios),'utf8', (err)=>{
        if(err){
          console.log(err)
-         return "no se creo el usuario"
+         texto =  "no se creo el usuario"
        }
        else{
            console.log('se ha creado el usuario');
-           return "curso creado"
+           texto =  "usuario creado"
          }
      })
  }
+ return texto
 }
 const partials = path.join(__dirname, '../partials');
 hbs.registerPartials(partials);
@@ -135,9 +142,18 @@ app.get('/verCursos', (req, res)=>{
 app.get('/inscribirCursos', (req, res)=>{
   res.render('registroCurso');
 })
-app.post('/inscribirCursos', (req, res)=>{
+app.post('/registroCurso', (req, res)=>{
   res.render('registroCursoPost', {
     mensaje: crearCurso(req.body.nombre, req.body.id, req.body.descripcion, req.body.precio, req.body.modalidad, req.body.intensidad)
+  })
+})
+app.get('/inscribirCursosUser', (req, res)=>{
+  res.render('inscribirCursos');
+})
+app.post('/inscribirCursosUser', (req, res)=>{
+  console.log(req.body)
+  res.render('inscribirCursosPost', {
+    mensaje: inscribirACurso(req.body.documento, req.body.option)
   })
 })
 
@@ -155,7 +171,7 @@ app.get('/registroCurso', (req, res)=>{
 
 
 app.post('/subirCursos' , (req, res)=>{
-  console.log(req.body)
+
 })
 app.get('/verInscritos', (req, res)=>{
   res.render('verInscritos')

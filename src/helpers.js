@@ -110,12 +110,12 @@ texto = texto + '</tbody></table>';
 return texto;
 })
 hbs.registerHelper('listarCursosDisponibles', ()=>{
-  let texto = "<select required> + <option disabled selected >seleccione un curso</option>"
+  let texto = `<select name="option" required>  <option disabled selected >seleccione un curso</option>`
 
   curso.forEach(curso => {
     if(curso.estado == 'disponible'){
     texto = texto + `
-    '<option value="${curso.id}">${curso.nombre} </option>`
+    '<option  value="${curso.id}">${curso.nombre} </option>`
   }
   })
   texto = texto + '</select>';

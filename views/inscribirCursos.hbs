@@ -1,0 +1,11 @@
+{{>header}}
+  <p> Registro de cursos para usuarios</p>
+  <form action="/inscribirCursosUser" method="post">
+    <input type="number" name="documento" placeholder="Ingrese su documento">
+    <input type="text" name="nombre" placeholder="ingrese su nombre">
+    <input type="email" name="correo" placeholder="ingrese su email">
+    <input type="number" name="telefono" placeholder="ingrese su telefono">
+    {{{listarCursosDisponibles}}}
+    <button>enviar</button>
+  </form>
+{{>footer}}
