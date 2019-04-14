@@ -259,7 +259,7 @@ app.get('*', (req, res) => {
   res.render('error');
 })
 
-mongoose.connect('mongodb://localhost:27017/Proyecto', {
+mongoose.connect(URLDB, {
   useNewUrlParser: true
 }, (error, resultado) => {
   if (error) {
