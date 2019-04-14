@@ -4,6 +4,7 @@
   "description": "Esta es la entrega uno grupal del curos de nodejs",
   "main": "app.js",
   "scripts": {
+    "start" : "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -14,6 +14,7 @@ let direccionEstudiantes  = "../trabajoNode/private/usuarios.json";
 const bodyParser = require('body-parser');
 
 app.set( 'view engine' , 'hbs');
+const mongoose = require('mongoose');
 
 const  roles = ['aspirante', 'coordinador', 'visitante'];
 function crearCurso(nombre, id, descripcion, precio, modalidad, intensidad) {
@@ -188,6 +189,8 @@ app.get('/inicio' , (req, res)=>{
 app.get('*', (req, res)=>{
   res.render('error');
 })
-app.listen(process.env.PORT, ()=>{
+//mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true});
+
+app.listen(port, ()=>{
   console.log(`el servidor monto, loool :v. ingrese en su navegador localhost:${process.env.PORT}`);
 })
