@@ -1,21 +1,16 @@
 const hbs = require('hbs');
-const fs = require('fs');
-let curso = require('../private/cursos.json');
-let matriculados = require('../private/matriculados.json')
 
 
 
-hbs.registerHelper('mostrarAspi', ()=>{
-
-
+hbs.registerHelper('mostrarAspi', (cursos)=>{
 let texto = "<table>\
 <thead>\
 <th>Nombre</th>\
 <th>descripcion</th>\
-<th>valor></th>\
+<th>valor</th>\
 </thead>";
 let key = 0
-curso.forEach(curso => {
+cursos.forEach(curso => {
   if (curso.estado == "disponible"){
   key = key + 1
 
@@ -36,7 +31,7 @@ curso.forEach(curso => {
   <thead>\
   <th>Descripcion</th>\
   <th>Modalidad</th>\
-  <th>Intensidad Horaria></th>\
+  <th>Intensidad Horaria</th>\
   </thead>
   <tr>
   <td>${curso.descripcion}</td>
@@ -58,17 +53,17 @@ curso.forEach(curso => {
 texto = texto + '</tbody></table>';
 return texto;
 })
-hbs.registerHelper('mostrar', ()=>{
+hbs.registerHelper('mostrar', (cursos)=>{
 
 
 let texto = "<table>\
 <thead>\
 <th>Nombre</th>\
 <th>descripcion</th>\
-<th>valor></th>\
+<th>valor</th>\
 </thead>";
 let key = 0
-curso.forEach(curso => {
+cursos.forEach(curso => {
   key = key + 1
 
   texto = texto + "<tr>" +
@@ -88,7 +83,7 @@ curso.forEach(curso => {
   <thead>\
   <th>Descripcion</th>\
   <th>Modalidad</th>\
-  <th>Intensidad Horaria></th>\
+  <th>Intensidad Horaria</th>\
   </thead>
   <tr>
   <td>${curso.descripcion}</td>
@@ -109,10 +104,10 @@ curso.forEach(curso => {
 texto = texto + '</tbody></table>';
 return texto;
 })
-hbs.registerHelper('listarCursosDisponibles', ()=>{
+hbs.registerHelper('listarCursosDisponibles', (cursos)=>{
   let texto = `<select name="option" required>  <option disabled selected >seleccione un curso</option>`
 
-  curso.forEach(curso => {
+  cursos.forEach(curso => {
     if(curso.estado == 'disponible'){
     texto = texto + `
     '<option  value="${curso.id}">${curso.nombre} </option>`
@@ -121,12 +116,11 @@ hbs.registerHelper('listarCursosDisponibles', ()=>{
   texto = texto + '</select>';
   return texto
 })
-hbs.registerHelper('listarMisCursos', (id)=>{
-  let texto;
-
-  matriculados.forEach(matricula => {
-    if(matricula.id == id){
-    texto = matricula.cursos;
-  }})
+hbs.registerHelper('listarMisCursos', (data)=>{
+  let texto = ' ';
+console.log(data);
+  data.forEach(matricula => {
+    texto = texto + ' ' + matricula + " "
+  })
   return texto
 })

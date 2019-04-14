@@ -16,5 +16,18 @@
  <a href="./inscribirCursos">inscribircursos</a>
  <a href="./verInscritos">ver inscritos</a>
  <a href="./inscribirCursosUser">registrar usuario a curso</a>
+ {{#if session}}
+ <form action="/salir" method="get">
+   {{nombre}}
+   <button>Salir</button>
+ </form>
+ {{else}}
+ <form action="/ingresar" method="post">
+   <input type="number" name="documento" placeholder="Ingrese su documento">
+   <input type="password" name="contrasena" placeholder="ingrese su contraseña">
+   <button>subir</button>
+ </form>
+ {{/if}}
 </div>
+
 </header>
