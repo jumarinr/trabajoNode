@@ -3,6 +3,7 @@ var app = express();
 const path = require('path');
 const hbs = require('hbs');
 require('./helpers');
+require('./config/config');
 const fs = require('fs');
 const listadoCursos = require('../private/cursos.json');
 const listadoEstudiantes = require('../private/usuarios.json');
@@ -187,6 +188,6 @@ app.get('/inicio' , (req, res)=>{
 app.get('*', (req, res)=>{
   res.render('error');
 })
-app.listen(3000, ()=>{
-  console.log("el servidor monto, loool :v. ingrese en su navegador localhost:3000");
+app.listen(process.env.PORT, ()=>{
+  console.log(`el servidor monto, loool :v. ingrese en su navegador localhost:${process.env.PORT}`);
 })
