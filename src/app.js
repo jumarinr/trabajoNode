@@ -259,7 +259,7 @@ app.get('*', (req, res) => {
   res.render('error');
 })
 
-mongoose.connect(URLDB, {
+mongoose.connect(process.env.URLDB, {
   useNewUrlParser: true
 }, (error, resultado) => {
   if (error) {
