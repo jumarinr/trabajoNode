@@ -269,6 +269,6 @@ mongoose.connect(process.env.URLDB, {
   }
 });
 
-app.listen(port, () => {
-  console.log(`el servidor monto, loool :v. ingrese en su navegador localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`el servidor monto, loool :v. ingrese en su navegador localhost:${process.env.PORT}`);
 })
